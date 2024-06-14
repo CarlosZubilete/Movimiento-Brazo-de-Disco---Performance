@@ -12,11 +12,10 @@ int main()
   int RPM, carasUtilizables, sectoresPorPista,puntoInicio , peticion, pistasPorCara;
   int sectorIncio, cilindroInicio, sectorDestino, cilindroDestino, rtaCantSecRecorridos;
   int newSectorInicio, sectorHomologoInicio, caraSectorInicio, sectorHomologoDestino, caraSectorDestino;
-  float pasoDeCilindro , rtaSeekTime, rtaSeachTime , tiempo_1sectorEnMM;
+  float pasoDeCilindro , rtaSeekTime, rtaSeachTime , tiempo_1sectorEnMM, rtaAccssTime;
     while ( true )
     {
       system("cls");
-      cout << "***************************" << endl;
       cout << "***************************" << endl;
       cout << "1. CARGAR DATOS:" << endl;
       cout << "2. MOSTRAR DATOS:" << endl;
@@ -25,8 +24,8 @@ int main()
       cout << "5. SECTORES RECORRIDOS DURANTE EL SEEK-TIME" << endl;
       cout << "6. NUEVO PUNTO ACTUAL | NUEVO PUNTO DESTINO: " << endl;
       cout << "7. SEACH TIME: " << endl;
-      cout << "8. OTRAS FUNCIONES " << endl;
-      cout << "0. PARA SALIR" << endl;
+      cout << "8. ACCES TIME: " << endl;
+      cout << "9. TIEMPO QUE TARDA EN RECORRE 1 SECTOR: " << endl;
       cout << "***************************" << endl;
       cout << "INGRESE UNA OPCION: ";
       cin >> opp;
@@ -45,20 +44,23 @@ int main()
               newSectorInicio = rtaCantSecRecorridos + sectorIncio;
               calcularSector_InicioHomologo( newSectorInicio, sectoresPorPista, caraSectorInicio, sectorHomologoInicio);
               calcularSector_DestinoHomologo ( sectorDestino, sectoresPorPista, caraSectorDestino, sectorHomologoDestino);
-              //rtaSeachTime = calcular_seachTime ( RPM, sectorHomologoInicio, sectorHomologoDestino, sectoresPorPista);
+              rtaSeachTime = calcular_seachTime ( RPM, sectorHomologoInicio, sectorHomologoDestino, sectoresPorPista);
+              rtaAccssTime = rtaSeekTime + rtaSeachTime;
             break;
           case '2':
               mostrarDatos( RPM, carasUtilizables, pistasPorCara, sectoresPorPista, pasoDeCilindro, puntoInicio, peticion );
             break;
           case '3':
-              cout << "CLINDRO EN EL QUE ESTOY: " << cilindroInicio << endl;
-              cout << "SECTOR EN EL QUE ESTOY: " << sectorIncio << endl;
-              cout << "||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||" << endl;
-              cout << "CILINDRO AL QUE VOY :" << cilindroDestino << endl;
+              cout << "CLINDRO EN EL QUE ESTOY: " << cilindroInicio << " ---> ";
+              cout << "CILINDRO AL QUE VOY: " << cilindroDestino << endl;
+              cout << endl;
+              cout << "SECTOR EN EL QUE ESTOY: " << sectorIncio << " ---> ";
               cout << "SECTO AL QUE VOY: "<< sectorDestino << endl;
             break;
           case '4':
-              cout << "SEEK TIME: " << rtaSeekTime << endl;
+              cout << endl;
+              cout << " " << rtaSeekTime << " m/s" <<endl;
+              cout << endl;
             break;
           case '5':
               cout << "CANTIDAD DE SECOCORES RECORRIDOS DURANTE EL SEEK: " << rtaCantSecRecorridos << endl;
@@ -67,15 +69,25 @@ int main()
               cout << "NUEVO SECTOR INICIO: " << newSectorInicio << endl;
               cout << "SECOR HOMOLOGO INICIO: " << sectorHomologoInicio << endl;
               cout << "CARA EN DONDE ESTA EL SECTOR HOMOLOGO: " << caraSectorInicio << endl;
-              cout << "||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||-|-||" << endl;
+              cout << endl;
               cout << "SECOR AL QUE VOY: " << sectorDestino << endl;
               cout << "SECOR HOMOLOGO DESTINO: " << sectorHomologoDestino << endl;
               cout << "CARA EN DONDE ESTA EL SECTOR HOMOLOGO: " << caraSectorDestino << endl;
             break;
           case '7':
-              cout << "SEACH TIME: " << rtaSeachTime <<endl;
+              cout << endl;
+              cout <<  " " << rtaSeachTime << " m/s" << endl;
+              cout << endl;
+              break;
           case '8':
-              cout << "TIEMPO QUE TARDA EN RECORRER 1 SEC"  << tiempo_1sectorEnMM <<endl;
+              cout << endl;
+              cout <<  " " << rtaAccssTime << " m/s"<< endl;
+              cout << endl;
+            break;
+          case '9':
+              cout << endl;
+              cout <<  " " << tiempo_1sectorEnMM << " m/s" << endl;
+              cout << endl;
             break;
           case '0': return 0;
               break;

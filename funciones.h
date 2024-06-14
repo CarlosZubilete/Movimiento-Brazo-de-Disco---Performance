@@ -5,23 +5,16 @@ void cargarDatos( int &rpm, int &caras, int &pistas, int &secXpista, float &paso
 {
   cout << "INGRESE R.P.M ";
   cin >> rpm;
-
   cout << "INGRESE CARAS UTILIZABLES: ";
   cin >> caras;
-
   cout << "INGRESE PISTAS POR CARA: ";
   cin >> pistas;
-
   cout << "INGRESE SECTORES POR PISTA: ";
   cin >> secXpista;
-
   cout << "INGRESE PASO DE CILINDRO: ";
   cin >> pasoXCil;
-
-
   cout << "INGRESE PUNTO ACTUAL ";
   cin >> ptoInicio ;
-
   cout << "INGRESE PETICION ";
   cin >> ptoFinal;
 }
@@ -77,7 +70,6 @@ void mostrarDatos( int rpm, int caras, int pistas, int secXpista, float pasoXCil
 // FIN PASO N°3.
 
 // CACCULOS EXTRAS:
-  // AGREGADO 12/06
   float calcularSetorEnMilisec ( int rpm, int secXpista )
   {
     float revXMiliSeg, pasajeAMiliSeg;
@@ -95,16 +87,6 @@ void mostrarDatos( int rpm, int caras, int pistas, int secXpista, float pasoXCil
       partEntera++;
     }
      return partEntera++;
-  }
-
-  int redondearDown (float valor)
-  {
-    int partEntera = 0;
-    for (int i = 0 ; i <= valor ; i++)
-    {
-      partEntera++;
-    }
-     return partEntera;
   }
 ///////////////////////////////////////////
 int sectoresRecorridosSeekTime (float seekTime , float tiempoRecorrer1Sec)
@@ -126,11 +108,9 @@ void calcularSector_DestinoHomologo ( int secDestino, int secXpista, int &caraHo
   secHomoDes = secDestino % secXpista;
 }
 
-
-/*
 float calcular_seachTime ( int rpm, int secHomoIni , int secHomoDes , int secXpista)
 {
-  float tiempoEn1sec = calcularVueltaEnMilisec(rpm) / secXpista;
+  float tiempoEn1sec = calcularSetorEnMilisec(rpm, secXpista);
   int cantSecAMover ;
   float seachTime;
   if ( secHomoIni > secHomoDes )
@@ -144,10 +124,6 @@ float calcular_seachTime ( int rpm, int secHomoIni , int secHomoDes , int secXpi
     seachTime = (float)cantSecAMover*tiempoEn1sec;
     return seachTime;
 }
-
-*/
-
-
 
 
 #endif // FUNCIONES_H_INCLUDED
